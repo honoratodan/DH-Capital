@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DH Capital + CâmbioHub</title>
+<meta name="description" content="Plataforma unificada de consultoria, treinamento, analytics e operações cambiais para empresas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --blue: #1a56db;
+    --blue-light: #3b82f6;
+    --gold: #d4a843;
+    --gold-light: #f0c060;
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --gray-100: #e8e6e0;
+    --gray-300: #b0ada5;
+    --gray-600: #6b6860;
+    --text-dark: #0a1628;
+    --text-mid: #3a3830;
+    --radius: 4px;
+    --radius-lg: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Syne', sans-serif;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+    letter-spacing: -0.03em;
+  }
+
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: white;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: white; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--blue-light); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .btn-gold:hover { background: var(--gold-light); }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(26,86,219,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 50% at 20% 80%, rgba(212,168,67,0.1) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 0;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212,168,67,0.12);
+    border: 1px solid rgba(212,168,67,0.3);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.08;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+    backdrop-filter: blur(10px);
+    animation: floatCard 6s ease-in-out infinite;
+  }
+
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .card-badge {
+    background: rgba(37,200,100,0.15);
+    border: 1px solid rgba(37,200,100,0.3);
+    color: #4ade80;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  .mini-chart {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .mini-chart svg { width: 100%; height: 100%; }
+
+  .card-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .metric-box {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .metric-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  .metric-up { color: #4ade80; font-size: 12px; font-weight: 500; }
+  .metric-down { color: #f87171; font-size: 12px; font-weight: 500; }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 6rem 0; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .section-tag::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 2px;
+    background: var(--blue);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--gray-600);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-bg { background: var(--off-white); }
+
+  .services-header { text-align: center; margin-bottom: 4rem; }
+  .services-header .section-sub { margin: 0 auto; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: white;
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover { box-shadow: 0 8px 40px rgba(10,22,40,0.1); transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-icon svg { width: 24px; height: 24px; }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .service-link:hover { gap: 10px; }
+
+  .s-blue { background: rgba(26,86,219,0.08); }
+  .s-gold { background: rgba(212,168,67,0.1); }
+  .s-green { background: rgba(22,163,74,0.08); }
+  .s-purple { background: rgba(124,58,237,0.08); }
+
+  /* ─── CAMBIOHUB ─── */
+  .cambiohub-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .cambiohub-visual {
+    position: relative;
+  }
+
+  .cambio-dashboard {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cambio-dashboard::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(26,86,219,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .dash-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .dash-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .dash-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #4ade80;
+  }
+
+  .dash-live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .dash-rates {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .rate-item {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .rate-pair {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .rate-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .rate-change-pos { color: #4ade80; font-size: 11px; }
+  .rate-change-neg { color: #f87171; font-size: 11px; }
+
+  .dash-chart-area {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 1.25rem;
+  }
+
+  .dash-chart-area svg { width: 100%; height: 100%; }
+
+  .dash-recent {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 1rem;
+  }
+
+  .recent-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .recent-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .recent-row:last-child { border-bottom: none; }
+
+  .recent-op { font-size: 13px; color: rgba(255,255,255,0.7); }
+  .recent-amt { font-size: 13px; font-weight: 500; color: white; }
+
+  .cambiohub-content h2 { margin-bottom: 1rem; }
+
+  .cambio-features { margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; }
+
+  .cambio-feature {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .feature-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(26,86,219,0.1);
+    border: 1px solid rgba(26,86,219,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .feature-check svg { width: 12px; height: 12px; color: var(--blue); }
+
+  .cambio-feature h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+
+  .cambio-feature p { font-size: 14px; color: var(--gray-600); }
+
+  /* ─── ANALYTICS ─── */
+  .analytics-bg { background: var(--off-white); }
+
+  .analytics-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .analytics-visual { order: 2; }
+  .analytics-content { order: 1; }
+
+  .analytics-dash {
+    background: white;
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(10,22,40,0.07);
+  }
+
+  .dash-header {
+    background: var(--navy);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-red { background: #f87171; }
+  .dot-yellow { background: #fbbf24; }
+  .dot-green { background: #4ade80; }
+
+  .dash-body { padding: 1.5rem; }
+
+  .dash-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .kpi-card {
+    background: var(--off-white);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .kpi-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .kpi-label { font-size: 11px; color: var(--gray-600); margin-top: 2px; }
+  .kpi-delta { font-size: 12px; color: #16a34a; font-weight: 500; }
+
+  .bar-chart-area { margin-bottom: 1rem; }
+  .bar-chart-area svg { width: 100%; height: auto; display: block; }
+
+  /* ─── CONSULTORIA ─── */
+  .consultoria-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .consultoria-visual { order: 1; }
+  .consultoria-content { order: 2; }
+
+  .process-steps { margin-top: 1rem; }
+
+  .process-step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+
+  .step-content p { font-size: 14px; color: var(--gray-600); }
+
+  .consult-visual-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .consult-visual-card::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(212,168,67,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .consult-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 1.5rem;
+  }
+
+  .consult-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .consult-metric {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cm-name { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .cm-bar-wrap { flex: 1; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin: 0 1rem; }
+  .cm-bar { height: 100%; border-radius: 2px; background: var(--blue); }
+  .cm-val { font-size: 13px; font-weight: 500; color: white; min-width: 40px; text-align: right; }
+
+  .consult-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ctag {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.65);
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    background: var(--navy);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 90% at 100% 50%, rgba(26,86,219,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 0% 100%, rgba(212,168,67,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #060f1e;
+    padding: 4rem 0 2rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 280px;
+    margin-top: 1rem;
+  }
+
+  .footer-col h5 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: rgba(255,255,255,0.8); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo-white {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo-white .logo-mark { background: var(--blue); }
+  .footer-logo-white span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: white; }
+
+  /* ─── MOBILE NAV ─── */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1rem 2rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .mobile-nav a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 15px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: block; }
+
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero p { margin: 0 auto 2rem; }
+    .hero-cta { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-visual { display: none; }
+
+    .services-grid { grid-template-columns: 1fr; }
+
+    .cambiohub-inner,
+    .analytics-inner,
+    .consultoria-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+    .analytics-visual { order: 1; }
+    .analytics-content { order: 2; }
+    .consultoria-visual { order: 2; }
+    .consultoria-content { order: 1; }
+
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 1.25rem; }
+    section { padding: 4rem 0; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up { animation: fadeUp 0.6s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">DH</div>
+        <span class="logo-text">DH Capital</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#cambiohub">CâmbioHub</a></li>
+        <li><a href="#analytics">Analytics</a></li>
+        <li><a href="#consultoria">Consultoria</a></li>
+      </ul>
+      <a href="#contato" class="btn btn-primary nav-cta">Falar com especialista</a>
+      <button class="hamburger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#servicos">Serviços</a>
+    <a href="#cambiohub">CâmbioHub</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#consultoria">Consultoria</a>
+    <a href="#contato" style="color: var(--gold-light);">Falar com especialista</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag fade-up">Plataforma Financeira Integrada</div>
+        <h1 class="fade-up delay-1">Serviços financeiros <em>unificados</em> para sua empresa</h1>
+        <p class="fade-up delay-2">Consultoria estratégica, treinamento corporativo, analytics avançado e operações cambiais integradas em uma única solução.</p>
+        <div class="hero-cta fade-up delay-3">
+          <a href="#servicos" class="btn btn-gold">Começar agora</a>
+          <a href="#cambiohub" class="btn btn-outline">Conhecer o CâmbioHub</a>
+        </div>
+        <div class="hero-stats fade-up delay-3">
+          <div>
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-label">Clientes Ativos</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">120h</div>
+            <div class="hero-stat-label">Conteúdo</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">24/7</div>
+            <div class="hero-stat-label">Suporte</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="card-header">
+            <span class="card-label">Portfólio DH</span>
+            <span class="card-badge">↑ +12.4%</span>
+          </div>
+          <div class="mini-chart">
+            <svg viewBox="0 0 380 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1a56db;stop-opacity:0.3"/>
+                  <stop offset="100%" style="stop-color:#1a56db;stop-opacity:0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,60 C30,55 60,70 90,45 C120,20 150,50 180,30 C210,10 240,40 270,20 C300,5 330,25 380,15" fill="none" stroke="#1a56db" stroke-width="2"/>
+              <path d="M0,60 C30,55 60,70 90,45 C120,20 150,50 180,30 C210,10 240,40 270,20 C300,5 330,25 380,15 L380,80 L0,80Z" fill="url(#lineGrad)"/>
+            </svg>
+          </div>
+          <div class="card-metrics">
+            <div class="metric-box">
+              <div class="metric-value">R$4.8M</div>
+              <div class="metric-label">Volume câmbio</div>
+              <div class="metric-up">↑ 8.2% este mês</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-value">98.1%</div>
+              <div class="metric-label">Conformidade</div>
+              <div class="metric-up">↑ BACEN</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="servicos">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-tag">Nossos serviços</div>
+      <h2 class="section-title">Quatro pilares, uma plataforma</h2>
+      <p class="section-sub">Soluções estratégicas que trabalham em harmonia para impulsionar as operações financeiras da sua empresa.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon s-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2" stroke-linecap="round">
+            <path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>
+            <path d="M16 20V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+          </svg>
+        </div>
+        <h3>Consultoria</h3>
+        <p>Assessoria especializada em estratégias financeiras, análise de mercado e otimização de operações corporativas.</p>
+        <a href="#consultoria" class="service-link" style="color: var(--blue);">Saiba mais <span>→</span></a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon s-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b58a2a" stroke-width="2" stroke-linecap="round">
+            <path d="M12 7v14M3 18a1 1 0 01-1-1V4a1 1 0 011-1h5a4 4 0 014 4 4 4 0 014-4h5a1 1 0 011 1v13a1 1 0 01-1 1h-6a3 3 0 00-3 3 3 3 0 00-3-3z"/>
+          </svg>
+        </div>
+        <h3>Treinamento</h3>
+        <p>Programas educacionais estruturados com 120+ horas de conteúdo em finanças corporativas e câmbio.</p>
+        <a href="#cambiohub" class="service-link" style="color: #b58a2a;">Saiba mais <span>→</span></a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon s-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round">
+            <path d="M3 3v16a2 2 0 002 2h16M18 17V9M13 17V5M8 17v-3"/>
+          </svg>
+        </div>
+        <h3>Analytics</h3>
+        <p>Ferramentas avançadas de análise de dados para insights acionáveis e tomada de decisão estratégica.</p>
+        <a href="#analytics" class="service-link" style="color: #16a34a;">Saiba mais <span>→</span></a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon s-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20M2 12h20"/>
+          </svg>
+        </div>
+        <h3>Câmbio &amp; Operações</h3>
+        <p>Plataforma completa para operações cambiais, intermediação e gestão de transações internacionais.</p>
+        <a href="#cambiohub" class="service-link" style="color: #7c3aed;">Saiba mais <span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAMBIOHUB -->
+<section id="cambiohub">
+  <div class="container">
+    <div class="cambiohub-inner">
+
+      <div class="cambiohub-visual">
+        <div class="cambio-dashboard">
+          <div class="dash-topbar">
+            <span class="dash-title">CâmbioHub — Sistema M.A.R.C.A</span>
+            <span class="dash-live">LIVE</span>
+          </div>
+          <div class="dash-rates">
+            <div class="rate-item">
+              <div class="rate-pair">USD/BRL</div>
+              <div class="rate-value">5.412</div>
+              <div class="rate-change-pos">+0.32%</div>
+            </div>
+            <div class="rate-item">
+              <div class="rate-pair">EUR/BRL</div>
+              <div class="rate-value">5.891</div>
+              <div class="rate-change-neg">−0.18%</div>
+            </div>
+            <div class="rate-item">
+              <div class="rate-pair">GBP/BRL</div>
+              <div class="rate-value">6.743</div>
+              <div class="rate-change-pos">+0.54%</div>
+            </div>
+          </div>
+          <div class="dash-chart-area">
+            <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="cambioGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1a56db;stop-opacity:0.25"/>
+                  <stop offset="100%" style="stop-color:#1a56db;stop-opacity:0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,75 L40,68 L80,55 L120,70 L160,42 L200,55 L240,30 L280,45 L320,22 L380,30" fill="none" stroke="#3b82f6" stroke-width="2"/>
+              <path d="M0,75 L40,68 L80,55 L120,70 L160,42 L200,55 L240,30 L280,45 L320,22 L380,30 L380,100 L0,100Z" fill="url(#cambioGrad)"/>
+              <circle cx="380" cy="30" r="4" fill="#3b82f6"/>
+            </svg>
+          </div>
+          <div class="dash-recent">
+            <div class="recent-label">Operações recentes</div>
+            <div class="recent-row">
+              <span class="recent-op">Remessa Internacional</span>
+              <span class="recent-amt" style="color:#4ade80">+ R$142.500</span>
+            </div>
+            <div class="recent-row">
+              <span class="recent-op">Câmbio Turismo</span>
+              <span class="recent-amt" style="color:#4ade80">+ R$38.200</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cambiohub-content">
+        <div class="section-tag">CâmbioHub</div>
+        <h2 class="section-title">Operações cambiais inteligentes</h2>
+        <p class="section-sub">Módulo especializado com sistema M.A.R.C.A — Monitoramento, Análise, Risco, Conformidade e Automação.</p>
+        <div class="cambio-features">
+          <div class="cambio-feature">
+            <div class="feature-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h4>120+ Horas de Conteúdo Prático</h4>
+              <p>Capacitação e inteligência de mercado integrada para preparar sua equipe financeira para cenários globais complexos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+<section class="analytics-bg" id="analytics">
+  <div class="container">
+    <div class="analytics-inner">
+      <div class="analytics-visual">
+        <div class="analytics-dash">
+          <div class="dash-header">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-kpis">
+              <div class="kpi-card">
+                <div class="kpi-value">R$ 1.2M</div>
+                <div class="kpi-label">Economia Gerada</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-value">+42%</div>
+                <div class="kpi-label">Eficiência</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-value">0%</div>
+                <div class="kpi-label">Erros de Risco</div>
+              </div>
+            </div>
+            <div class="bar-chart-area">
+              <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="40" width="30" height="110" rx="4" fill="#0a1628" />
+                <rect x="80" y="60" width="30" height="90" rx="4" fill="#1a56db" />
+                <rect x="140" y="20" width="30" height="130" rx="4" fill="#0a1628" />
+                <rect x="200" y="50" width="30" height="100" rx="4" fill="#1a56db" />
+                <rect x="260" y="30" width="30" height="120" rx="4" fill="#d4a843" />
+                <rect x="320" y="10" width="30" height="140" rx="4" fill="#1a56db" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="analytics-content">
+        <div class="section-tag">Analytics</div>
+        <h2 class="section-title">Dados em tempo real para decisões rápidas</h2>
+        <p class="section-sub">Painéis dinâmicos criados para simplificar o acompanhamento das taxas, custos operacionais e performance financeira da sua empresa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTORIA -->
+<section id="consultoria">
+  <div class="container">
+    <div class="consultoria-inner">
+      <div class="consultoria-visual">
+        <div class="consult-visual-card">
+          <div class="consult-title">Métricas de Performance</div>
+          <div class="consult-metrics">
+            <div class="consult-metric">
+              <span class="cm-name">Redução de Custos</span>
+              <div class="cm-bar-wrap"><div class="cm-bar" style="width: 85%;"></div></div>
+              <span class="cm-val">85%</span>
+            </div>
+            <div class="consult-metric">
+              <span class="cm-name">Segurança Cambial</span>
+              <div class="cm-bar-wrap"><div class="cm-bar" style="width: 95%; background: var(--gold);"></div></div>
+              <span class="cm-val">95%</span>
+            </div>
+          </div>
+          <div class="consult-tags">
+            <span class="ctag">Estratégia</span>
+            <span class="ctag">Bacen</span>
+            <span class="ctag">Hedge</span>
+          </div>
+        </div>
+      </div>
+      <div class="consultoria-content">
+        <div class="section-tag">Consultoria Estratégica</div>
+        <h2 class="section-title">Direcionamento de ponta a ponta</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Diagnóstico Operacional</h4>
+              <p>Análise completa de como sua empresa lida com fluxo internacional e moedas.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Implementação Segura</h4>
+              <p>Aplicação de métodos automatizados para proteção patrimonial contra oscilações de mercado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SEÇÃO -->
+<section class="cta-section" id="contato">
+  <div class="container">
+    <div class="cta-inner">
+      <h2>Pronto para otimizar suas finanças?</h2>
+      <p>Fale agora mesmo com um de nossos especialistas e descubra como integrar o CâmbioHub no ecossistema da sua empresa.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/seu-numero-aqui" class="btn btn-gold" target="_blank">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo-white">
+          <div class="logo-mark">DH</div>
+          <span>DH Capital</span>
+        </a>
+        <p>Soluções completas e unificadas em finanças, treinamento e operações de câmbio corporativo.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Plataforma</h5>
+        <ul>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#cambiohub">CâmbioHub</a></li>
+          <li><a href="#analytics">Analytics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="#contato">Suporte Corporativo</a></li>
+          <li><a href="#contato">Fale Conosco</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 DH Capital &amp; CâmbioHub. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPT PARA MENU MOBILE -->
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  menuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+    // Pequena animação visual no botão hambúrguer
+    const spans = menuBtn.querySelectorAll('span');
+    spans.forEach(span => span.classList.toggle('active'));
+  });
+
+  // Fecha o menu ao clicar em qualquer link dele
+  const mobileLinks = mobileNav.querySelectorAll('a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
